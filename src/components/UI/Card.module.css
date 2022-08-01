@@ -1,0 +1,15 @@
+.card {
+  background-color: var(--login-background-color);
+  width: 612px;
+  border-radius: 25px;
+  padding: 55px 87px 64px 87px;
+}
+
+.center {
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}

@@ -1,0 +1,15 @@
+.title {
+  line-height: 44px;
+  font-size: 36px;
+  color: var(--login-header-color);
+  margin-bottom: 30px;
+}
+
+.inputsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 12px 0px 17px;
+  gap: 16px;
+}
