@@ -9,6 +9,10 @@
   outline: none;
 }
 
+.inputInvalid {
+  border: 2px solid var(--error-message-color);
+}
+
 .input:focus-visible {
   border: 2px solid var(--login-input-border);
 }
@@ -28,11 +32,43 @@
   line-height: 16px;
   letter-spacing: 0.4px;
   color: var(--login-input-border);
-  background-color: white;
+  background-color: var(--login-input-background-color);
   padding: 0 4px;
   visibility: hidden;
 }
 
 .input:focus-visible + label {
   visibility: visible;
+}
+
+.btnEye {
+  width: 22px;
+  height: 18px;
+  position: absolute;
+  top: 20px;
+  right: 13px;
+  border: none;
+  opacity: 0.1;
+}
+
+.btnEye:hover {
+  opacity: 1;
+}
+
+.eyeIcon {
+  background: url("../../asserts/icons/eye.svg") no-repeat;
+}
+
+.crossedEyeIcon {
+  background: url("../../asserts/icons/crossed-eye.svg") no-repeat;
+}
+
+.invalidIcon {
+  background: url("../../asserts/icons/exclamationMark.svg") no-repeat;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 20px;
+  right: 13px;
+  border: none;
 }

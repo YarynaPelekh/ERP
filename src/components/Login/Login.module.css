@@ -10,6 +10,34 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 12px 0px 17px;
   gap: 16px;
+}
+
+.inputWithError {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between;
+  align-items: center; */
+  gap: 4px;
+}
+
+.buttonContainer {
+  margin-top: 32px;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.1px;
+  justify-content: space-between;
+}
+
+.errorMessage {
+  height: 16px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 16px;
+
+  align-self: flex-start;
+  margin-left: 11px;
+  letter-spacing: 0.4px;
+  color: var(--error-message-color);
 }
