@@ -9,6 +9,7 @@ const Input = React.forwardRef((props, ref) => {
     setIsPasswordMode((mode) => !mode);
   };
 
+  console.log("Rendering ", props.label, "isValid ", props.isValid);
   return (
     <div className={classes.inputGroup}>
       <input
@@ -16,9 +17,8 @@ const Input = React.forwardRef((props, ref) => {
         className={`${classes.input} ${!props.isValid ? classes.inputInvalid : ""}`}
         placeholder={props.placeholder}
         type={isPasswordMode ? "password" : "text"}
-        onChange={props.onChange}
       />
-      <label>{props.label}</label>
+      {props.isValid && <label>{props.label}</label>}
       <button
         className={
           !props.isValid

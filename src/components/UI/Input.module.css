@@ -9,12 +9,13 @@
   outline: none;
 }
 
-.inputInvalid {
-  border: 2px solid var(--error-message-color);
-}
-
 .input:focus-visible {
   border: 2px solid var(--login-input-border);
+}
+
+.inputInvalid,
+.inputInvalid:focus-visible {
+  border: 2px solid var(--error-message-color);
 }
 
 .inputGroup {

@@ -5,6 +5,9 @@
   --login-input-border: #7f8ee2;
   --login-input-background-color: white;
   --error-message-color: #b3261e;
+  --error-card-background: #fff5f5;
+  --error-card-main-message: #1c1b1f;
+  --error-card-secondary-message: #49454f;
 }
 
 * {

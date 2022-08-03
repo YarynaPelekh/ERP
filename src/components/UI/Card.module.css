@@ -1,8 +1,15 @@
-.card {
+.cardNormal {
   background-color: var(--login-background-color);
   width: 612px;
   border-radius: 25px;
   padding: 55px 87px 64px 87px;
+}
+
+.cardWarning {
+  background-color: var(--error-card-background);
+  width: 312px;
+  border-radius: 25px;
+  padding: 24px 24px 34px 24px;
 }
 
 .center {
