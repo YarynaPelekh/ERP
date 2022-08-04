@@ -10,6 +10,7 @@ function App() {
     <Routes>
       <Route path="/" element={<LogIn />} />
       <Route path="/block-user" element={<UserBlocked />} />
+      <Route path="/block-user" element={<UserBlocked />} />
     </Routes>
   );
 }

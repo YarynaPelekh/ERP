@@ -23,3 +23,7 @@
   border-radius: 100px;
   color: var(--login-input-background-color);
 }
+
+.mainButtonDisable {
+  background-color: gray;
+}
