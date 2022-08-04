@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Button from "../UI/Button";
@@ -15,6 +15,12 @@ const MAX_NUMBER_INCORRECT_ATTEMPTS = 3;
 const LogIn = () => {
   const navigate = useNavigate();
 
+  const [submitDisable, setSubmitDisable] = useState(true);
+
+  const [inputsTouched, setInputsTouched] = useState(false);
+  const [emailValue, setEmailValue] = useState("");
+  const [passwordValue, setPasswordValue] = useState("");
+
   const [emailIsValid, setEmailIsValid] = useState(true);
   const [passwordIsValid, setPasswordIsValid] = useState(true);
   const [incorrectAttemptsNumber, setIncorrectAttemptsNumber] = useState();
@@ -22,14 +28,24 @@ const LogIn = () => {
   const emailRef = React.createRef();
   const passwordRef = React.createRef();
 
-  const inputsValidate = () => {
+  const emailChangeHandle = () => {
+    setInputsTouched(true);
+    setEmailValue(emailRef.current.value);
+  };
+
+  const passwordChangeHandle = () => {
+    setInputsTouched(true);
+    setPasswordValue(passwordRef.current.value);
+  };
+
+  const inputsValidate = useCallback(() => {
     const enteredEmail = emailRef.current.value.trim();
     const enteredPassword = passwordRef.current.value.trim();
 
-    setEmailIsValid(enteredEmail.endsWith(emailDomain));
-    setPasswordIsValid(enteredPassword.length > 0);
-    return enteredEmail.endsWith(emailDomain) && enteredPassword.length > 0;
-  };
+    // setEmailIsValid(inputsTouched ? enteredEmail.endsWith(emailDomain) : true);
+    // setPasswordIsValid(inputsTouched ? enteredPassword.length > 0 : true);
+    return inputsTouched && enteredEmail.endsWith(emailDomain) && enteredPassword.length > 0;
+  }, [emailRef, passwordRef, inputsTouched]);
 
   const submitHandler = () => {
     if (!inputsValidate()) {
@@ -39,25 +55,39 @@ const LogIn = () => {
       localStorage.setItem("incorrectAttemptsNumber", 0);
     }
     setIncorrectAttemptsNumber(+localStorage.getItem("incorrectAttemptsNumber") || 0);
+
+    console.log("Submit handler");
   };
 
+  // useEffect(() => {
+  //   console.log(incorrectAttemptsNumber);
+  //   incorrectAttemptsNumber >= MAX_NUMBER_INCORRECT_ATTEMPTS && navigate("/block-user", { replace: true });
+  // }, [incorrectAttemptsNumber]);
+
   useEffect(() => {
-    console.log(incorrectAttemptsNumber);
-    incorrectAttemptsNumber >= MAX_NUMBER_INCORRECT_ATTEMPTS && navigate("/block-user", { replace: true });
-  }, [incorrectAttemptsNumber]);
+    setSubmitDisable(!inputsValidate());
+  }, [emailValue, passwordValue, setSubmitDisable, inputsValidate]);
+
+  console.log("render login form");
 
   return (
     <Card type="normal">
       <p className={classes.title}>Login</p>
       <div className={classes.inputsContainer}>
-        <div className={classes.inputWithError}>
-          <Input ref={emailRef} placeholder="Company Email" label="Email" isValid={emailIsValid && passwordIsValid} />
-          {/* {!emailIsValid && <p className={classes.errorMessage}>Incorrect email</p>} */}
-        </div>
-        <div className={classes.inputWithError}>
-          <Input ref={passwordRef} placeholder="Password" label="Password" isValid={emailIsValid && passwordIsValid} />
-          {/* {!passwordIsValid && <p className={classes.errorMessage}>Incorrect password</p>} */}
-        </div>
+        <Input
+          ref={emailRef}
+          placeholder="Company Email"
+          label="Email"
+          isValid={emailIsValid && passwordIsValid}
+          onChange={emailChangeHandle}
+        />
+        <Input
+          ref={passwordRef}
+          placeholder="Password"
+          label="Password"
+          isValid={emailIsValid && passwordIsValid}
+          onChange={passwordChangeHandle}
+        />
         {(!passwordIsValid || !emailIsValid) && <p className={classes.errorMessage}>Incorrect credentials</p>}
       </div>
       <div className={classes.buttonContainer}>
@@ -70,8 +100,9 @@ const LogIn = () => {
         />
         <Button
           title="Submit"
-          className={`${classesButton.button} ${classesButton.mainButton}`}
+          className={`${classesButton.button} ${classesButton.mainButton} `}
           onClick={submitHandler}
+          disabled={submitDisable}
         />
       </div>
       {incorrectAttemptsNumber > MAX_NUMBER_INCORRECT_ATTEMPTS && (
