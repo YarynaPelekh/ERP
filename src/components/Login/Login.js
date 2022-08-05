@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import Button from "../UI/Button";
 import Card from "../UI/Card";
 import Input from "../UI/Input";
+import CaptchaPopUp from "../UI/CaptchaPopUp";
 
 import { emailDomain as emailDomain } from "../config/constants";
 
@@ -15,6 +16,7 @@ const MAX_NUMBER_INCORRECT_ATTEMPTS = 3;
 const LogIn = () => {
   const navigate = useNavigate();
 
+  const [showPopUp, setShowPopUp] = useState();
   const [submitDisable, setSubmitDisable] = useState(true);
 
   const [inputsTouched, setInputsTouched] = useState(false);
@@ -55,8 +57,6 @@ const LogIn = () => {
       localStorage.setItem("incorrectAttemptsNumber", 0);
     }
     setIncorrectAttemptsNumber(+localStorage.getItem("incorrectAttemptsNumber") || 0);
-
-    console.log("Submit handler");
   };
 
   // useEffect(() => {
@@ -68,7 +68,13 @@ const LogIn = () => {
     setSubmitDisable(!inputsValidate());
   }, [emailValue, passwordValue, setSubmitDisable, inputsValidate]);
 
-  console.log("render login form");
+  const showPopUpHandle = () => {
+    setShowPopUp(true);
+  };
+
+  const modalOnCloseHandle = () => {
+    setShowPopUp(false);
+  };
 
   return (
     <Card type="normal">
@@ -108,6 +114,8 @@ const LogIn = () => {
       {incorrectAttemptsNumber > MAX_NUMBER_INCORRECT_ATTEMPTS && (
         <p className={classes.errorMessage}>You made tree wrong attempts</p>
       )}
+      <button onClick={showPopUpHandle}>Show pop-up</button>
+      {showPopUp && <CaptchaPopUp onClose={modalOnCloseHandle} />}
     </Card>
   );
 };
