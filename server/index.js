@@ -21,23 +21,29 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", router);
 
 //POST route
-router.post("/post", async (req, res) => {
-  //Destructuring response token from request body
-  const { token } = req.body;
+router
+  .get("/get", function (req, res) {
+    // const { password } = req.query.password;
+    console.log(req.query);
+    console.log(req.query.password, req.query.password.length >= 3);
 
-  //sends secret key and response token to google
-  await axios.post(
-    // `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.SECRET_KEY}&response=${token}`
-    `https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_KEY}&response=${token}`
-  );
+    res.send(req.query.password.length >= 3);
+    // res.send(true);
+  })
+  .post("/post", async (req, res) => {
+    //Destructuring response token from request body
+    const { token } = req.body;
 
-  //check response status and send back to the client-side
-  if (res.status(200)) {
-    res.send("Human 👨 👩");
-  } else {
-    res.send("Robot 🤖");
-  }
-});
+    //sends secret key and response token to google
+    await axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${SECRET_KEY}&response=${token}`);
+
+    //check response status and send back to the client-side
+    if (res.status(200)) {
+      res.send("Human 👨 👩");
+    } else {
+      res.send("Robot 🤖");
+    }
+  });
 
 app.listen(port, () => {
   console.log(`server is running on ${port}`);

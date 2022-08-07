@@ -27,3 +27,7 @@
 .mainButtonDisable {
   background-color: gray;
 }
+
+.fullWidthButton {
+  width: 100%;
+}

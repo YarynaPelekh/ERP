@@ -23,13 +23,3 @@
   z-index: 20;
   background-color: rgba(0, 0, 0, 0.45);
 }
-
-p {
-  font-size: 1.4rem;
-  text-align: center;
-  margin: 1.25rem;
-}
-
-button {
-  float: right;
-}
