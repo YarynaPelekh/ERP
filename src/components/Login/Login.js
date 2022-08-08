@@ -9,7 +9,7 @@ import CaptchaPopUp from "./CaptchaPopUp";
 
 import { emailDomain, MAX_NUMBER_INCORRECT_ATTEMPTS, url } from "../config/constants";
 
-import classes from "./Login.module.css";
+import classes from "./AuthForm.module.css";
 import classesButton from "../UI/Button.module.css";
 
 const LogIn = () => {
@@ -73,7 +73,6 @@ const LogIn = () => {
       setEmailIsValid(false);
       setPasswordIsValid(false);
     } else {
-      console.log("correct attempt");
       localStorage.setItem("incorrectAttemptsNumber", 0);
       setEmailIsValid(true);
       setPasswordIsValid(true);
@@ -84,7 +83,6 @@ const LogIn = () => {
   };
 
   useEffect(() => {
-    console.log("Incorrect attempts number: ", incorrectAttemptsNumber);
     if (incorrectAttemptsNumber >= MAX_NUMBER_INCORRECT_ATTEMPTS) {
       setShowPopUp(true);
     }
@@ -116,6 +114,7 @@ const LogIn = () => {
           label="Email"
           isValid={emailIsValid && passwordIsValid}
           onChange={emailChangeHandle}
+          passwordMode={false}
         />
         <Input
           ref={passwordRef}
@@ -123,8 +122,8 @@ const LogIn = () => {
           label="Password"
           isValid={emailIsValid && passwordIsValid}
           onChange={passwordChangeHandle}
+          passwordMode={true}
         />
-        {(!passwordIsValid || !emailIsValid) && <p className={classes.errorMessage}>Incorrect credentials</p>}
       </div>
       <div className={classes.buttonContainer}>
         <Button
@@ -141,6 +140,11 @@ const LogIn = () => {
           disabled={submitDisable}
         />
       </div>
+      {!passwordIsValid || !emailIsValid ? (
+        <p className={classes.errorMessage}>Incorrect credentials</p>
+      ) : (
+        <p className={classes.errorMessage}></p>
+      )}
       {showPopUp && <CaptchaPopUp onClose={modalOnCloseHandle} />}
     </Card>
   );

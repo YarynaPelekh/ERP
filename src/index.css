@@ -8,6 +8,7 @@
   --error-card-background: #fff5f5;
   --error-card-main-message: #1c1b1f;
   --error-card-secondary-message: #49454f;
+  --backdrop-color: #cecece;
 }
 
 * {
