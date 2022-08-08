@@ -3,11 +3,17 @@
   --login-header-color: #474e77;
   --login-input-color: #3e3e3e;
   --login-input-border: #7f8ee2;
+  --login-input-background-color: white;
+  --error-message-color: #b3261e;
+  --error-card-background: #fff5f5;
+  --error-card-main-message: #1c1b1f;
+  --error-card-secondary-message: #49454f;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
+  font-family: "Roboto", sans-serif;
 }
 
 body {
