@@ -5,14 +5,14 @@ import axios from "axios";
 import Button from "../UI/Button";
 import Card from "../UI/Card";
 import Input from "../UI/Input";
-import CaptchaPopUp from "../UI/CaptchaPopUp";
+import CaptchaPopUp from "./CaptchaPopUp";
 
 import { emailDomain } from "../config/constants";
 
 import classes from "./Login.module.css";
 import classesButton from "../UI/Button.module.css";
 
-const MAX_NUMBER_INCORRECT_ATTEMPTS = 33;
+const MAX_NUMBER_INCORRECT_ATTEMPTS = 3;
 
 const LogIn = () => {
   const navigate = useNavigate();
@@ -57,6 +57,7 @@ const LogIn = () => {
       })
       .catch((error) => {
         console.log("axios error, ", error);
+        alert(`Can't validate entered credentials.\n${error.message}`);
         return false;
       });
     return loginValid;
@@ -81,6 +82,7 @@ const LogIn = () => {
       navigate("/main-page");
     }
     setIncorrectAttemptsNumber(+localStorage.getItem("incorrectAttemptsNumber") || 0);
+    console.log("Incorrect attempts number: ", incorrectAttemptsNumber);
   };
 
   useEffect(() => {
@@ -139,8 +141,6 @@ const LogIn = () => {
           disabled={submitDisable}
         />
       </div>
-      <p className={classes.errorMessage}>{`You made ${incorrectAttemptsNumber} wrong attempts`}</p>
-
       {showPopUp && <CaptchaPopUp onClose={modalOnCloseHandle} />}
     </Card>
   );

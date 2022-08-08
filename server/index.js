@@ -24,7 +24,6 @@ app.use("/", router);
 router
   .get("/get", function (req, res) {
     // const { password } = req.query.password;
-    console.log(req.query);
     console.log(req.query.password, req.query.password.length >= 3);
 
     res.send(req.query.password.length >= 3);

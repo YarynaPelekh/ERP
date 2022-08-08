@@ -15,7 +15,6 @@ const CaptchaPopUp = (props) => {
     //Reset the reCAPTCHA component for subsequent checks
     recaptchaRef.current.reset();
     await axios
-      // .post(process.env.REACT_APP_API_URL, { recaptchaValue })
       .post("http://localhost:2000/post", { recaptchaValue })
       .then((res) => {
         console.log(res);
@@ -23,7 +22,7 @@ const CaptchaPopUp = (props) => {
       })
       .catch((error) => {
         console.log("axios error, ", error);
-        alert("Can't verify your answer. Please, try again.");
+        alert(`Can't verify your answer. Please, try again..\n${error.message}`);
       });
   };
 
