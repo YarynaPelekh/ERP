@@ -1,17 +1,16 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 import Button from "../UI/Button";
 import Card from "../UI/Card";
 import Input from "../UI/Input";
-import CaptchaPopUp from "../UI/CaptchaPopUp";
+import CaptchaPopUp from "./CaptchaPopUp";
 
-import { emailDomain as emailDomain } from "../config/constants";
+import { emailDomain, MAX_NUMBER_INCORRECT_ATTEMPTS, url } from "../config/constants";
 
-import classes from "./Login.module.css";
+import classes from "./AuthForm.module.css";
 import classesButton from "../UI/Button.module.css";
-
-const MAX_NUMBER_INCORRECT_ATTEMPTS = 3;
 
 const LogIn = () => {
   const navigate = useNavigate();
@@ -44,36 +43,65 @@ const LogIn = () => {
     const enteredEmail = emailRef.current.value.trim();
     const enteredPassword = passwordRef.current.value.trim();
 
-    // setEmailIsValid(inputsTouched ? enteredEmail.endsWith(emailDomain) : true);
-    // setPasswordIsValid(inputsTouched ? enteredPassword.length > 0 : true);
     return inputsTouched && enteredEmail.endsWith(emailDomain) && enteredPassword.length > 0;
   }, [emailRef, passwordRef, inputsTouched]);
 
-  const submitHandler = () => {
-    if (!inputsValidate()) {
+  const serverLogin = async () => {
+    const loginValid = await axios
+      // .get("http://localhost:2000/get", { passwordValue })
+      .get(url + "get", { params: { password: passwordValue } })
+      .then((res) => {
+        return res.data;
+      })
+      .catch((error) => {
+        console.log("axios error, ", error);
+        alert(`Can't validate entered credentials.\n${error.message}`);
+        return false;
+      });
+    return loginValid;
+  };
+
+  const submitHandler = async () => {
+    const validationOnServer = await serverLogin()
+      .then((res) => res)
+      .catch((error) => console.log(error));
+    if (!validationOnServer) {
       let incorrectAttemptsNumber = +localStorage.getItem("incorrectAttemptsNumber") || 0;
       localStorage.setItem("incorrectAttemptsNumber", ++incorrectAttemptsNumber);
+      localStorage.setItem("userLogin", emailValue);
+
+      setEmailIsValid(false);
+      setPasswordIsValid(false);
     } else {
       localStorage.setItem("incorrectAttemptsNumber", 0);
+      setEmailIsValid(true);
+      setPasswordIsValid(true);
+      //forward to the main page
+      navigate("/main-page");
     }
     setIncorrectAttemptsNumber(+localStorage.getItem("incorrectAttemptsNumber") || 0);
   };
 
-  // useEffect(() => {
-  //   console.log(incorrectAttemptsNumber);
-  //   incorrectAttemptsNumber >= MAX_NUMBER_INCORRECT_ATTEMPTS && navigate("/block-user", { replace: true });
-  // }, [incorrectAttemptsNumber]);
+  useEffect(() => {
+    if (incorrectAttemptsNumber >= MAX_NUMBER_INCORRECT_ATTEMPTS) {
+      setShowPopUp(true);
+    }
+  }, [incorrectAttemptsNumber]);
 
   useEffect(() => {
     setSubmitDisable(!inputsValidate());
   }, [emailValue, passwordValue, setSubmitDisable, inputsValidate]);
 
-  const showPopUpHandle = () => {
-    setShowPopUp(true);
-  };
+  useEffect(() => {
+    setIncorrectAttemptsNumber(+localStorage.getItem("incorrectAttemptsNumber") || 0);
+    emailRef.current.value = localStorage.getItem("userLogin") || "";
+  }, []);
 
   const modalOnCloseHandle = () => {
     setShowPopUp(false);
+    //reset number of incorrect attempts
+    localStorage.setItem("incorrectAttemptsNumber", 0);
+    setIncorrectAttemptsNumber(+localStorage.getItem("incorrectAttemptsNumber") || 0);
   };
 
   return (
@@ -86,6 +114,7 @@ const LogIn = () => {
           label="Email"
           isValid={emailIsValid && passwordIsValid}
           onChange={emailChangeHandle}
+          passwordMode={false}
         />
         <Input
           ref={passwordRef}
@@ -93,15 +122,15 @@ const LogIn = () => {
           label="Password"
           isValid={emailIsValid && passwordIsValid}
           onChange={passwordChangeHandle}
+          passwordMode={true}
         />
-        {(!passwordIsValid || !emailIsValid) && <p className={classes.errorMessage}>Incorrect credentials</p>}
       </div>
       <div className={classes.buttonContainer}>
         <Button
           title="Forgot password?"
           className={`${classesButton.button} ${classesButton.secondaryButton}`}
           onClick={() => {
-            console.log("Forgot password");
+            navigate("/forgot-password");
           }}
         />
         <Button
@@ -111,10 +140,11 @@ const LogIn = () => {
           disabled={submitDisable}
         />
       </div>
-      {incorrectAttemptsNumber > MAX_NUMBER_INCORRECT_ATTEMPTS && (
-        <p className={classes.errorMessage}>You made tree wrong attempts</p>
+      {!passwordIsValid || !emailIsValid ? (
+        <p className={classes.errorMessage}>Incorrect credentials</p>
+      ) : (
+        <p className={classes.errorMessage}></p>
       )}
-      <button onClick={showPopUpHandle}>Show pop-up</button>
       {showPopUp && <CaptchaPopUp onClose={modalOnCloseHandle} />}
     </Card>
   );

@@ -4,7 +4,7 @@ import classes from "./Input.module.css";
 
 const Input = React.forwardRef((props, ref) => {
   // const Input = (props) => {
-  const [isPasswordMode, setIsPasswordMode] = useState(false);
+  const [isPasswordMode, setIsPasswordMode] = useState(props.passwordMode);
 
   const passwordModeClickHandle = () => {
     setIsPasswordMode((mode) => !mode);
