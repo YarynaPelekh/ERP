@@ -13,11 +13,9 @@ const ForgotPassword = () => {
 
   const [emailIsValid, setEmailIsValid] = useState(true);
   const [submitDisable, setSubmitDisable] = useState(true);
-  // const [inputsTouched, setInputsTouched] = useState(false);
   const [emailValue, setEmailValue] = useState("");
 
   const emailChangeHandle = () => {
-    // setInputsTouched(true);
     setSubmitDisable(emailValue.trim().endsWith(emailDomain));
     setEmailValue(emailRef.current.value);
   };
@@ -37,7 +35,6 @@ const ForgotPassword = () => {
           isValid={emailIsValid}
           onChange={emailChangeHandle}
         />
-        {/* {(!passwordIsValid || !emailIsValid) && <p className={classes.errorMessage}>Incorrect credentials</p>} */}
       </div>
       <div className={classes.buttonContainer}>
         <Button

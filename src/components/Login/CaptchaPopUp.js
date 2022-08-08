@@ -5,7 +5,7 @@ import ReCAPTCHA from "react-google-recaptcha";
 
 import Modal from "../UI/Modal";
 
-const SITE_KEY = "6LeMe0whAAAAAFZmJLnGIL3tRMaDA1iU8FFaePuL";
+import { SITE_KEY, url } from "../config/constants";
 
 const CaptchaPopUp = (props) => {
   const recaptchaRef = React.createRef();
@@ -15,7 +15,7 @@ const CaptchaPopUp = (props) => {
     //Reset the reCAPTCHA component for subsequent checks
     recaptchaRef.current.reset();
     await axios
-      .post("http://localhost:2000/post", { recaptchaValue })
+      .post(url + "post", { recaptchaValue })
       .then((res) => {
         console.log(res);
         props.onClose();

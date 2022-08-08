@@ -7,12 +7,10 @@ import Card from "../UI/Card";
 import Input from "../UI/Input";
 import CaptchaPopUp from "./CaptchaPopUp";
 
-import { emailDomain } from "../config/constants";
+import { emailDomain, MAX_NUMBER_INCORRECT_ATTEMPTS, url } from "../config/constants";
 
 import classes from "./Login.module.css";
 import classesButton from "../UI/Button.module.css";
-
-const MAX_NUMBER_INCORRECT_ATTEMPTS = 3;
 
 const LogIn = () => {
   const navigate = useNavigate();
@@ -51,7 +49,7 @@ const LogIn = () => {
   const serverLogin = async () => {
     const loginValid = await axios
       // .get("http://localhost:2000/get", { passwordValue })
-      .get("http://localhost:2000/get", { params: { password: passwordValue } })
+      .get(url + "get", { params: { password: passwordValue } })
       .then((res) => {
         return res.data;
       })
@@ -70,6 +68,7 @@ const LogIn = () => {
     if (!validationOnServer) {
       let incorrectAttemptsNumber = +localStorage.getItem("incorrectAttemptsNumber") || 0;
       localStorage.setItem("incorrectAttemptsNumber", ++incorrectAttemptsNumber);
+      localStorage.setItem("userLogin", emailValue);
 
       setEmailIsValid(false);
       setPasswordIsValid(false);
@@ -82,10 +81,10 @@ const LogIn = () => {
       navigate("/main-page");
     }
     setIncorrectAttemptsNumber(+localStorage.getItem("incorrectAttemptsNumber") || 0);
-    console.log("Incorrect attempts number: ", incorrectAttemptsNumber);
   };
 
   useEffect(() => {
+    console.log("Incorrect attempts number: ", incorrectAttemptsNumber);
     if (incorrectAttemptsNumber >= MAX_NUMBER_INCORRECT_ATTEMPTS) {
       setShowPopUp(true);
     }
@@ -97,6 +96,7 @@ const LogIn = () => {
 
   useEffect(() => {
     setIncorrectAttemptsNumber(+localStorage.getItem("incorrectAttemptsNumber") || 0);
+    emailRef.current.value = localStorage.getItem("userLogin") || "";
   }, []);
 
   const modalOnCloseHandle = () => {
