@@ -26,7 +26,6 @@ const ForgotPassword = () => {
   };
 
   const ValidateEmail = () => {
-    console.log(emailValue);
     return emailValue.endsWith(emailDomain);
   };
 
