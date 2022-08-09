@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 import { useNavigate } from "react-router-dom";
 
 import Modal from "../UI/Modal";
@@ -98,7 +98,7 @@ const CreatePassword = () => {
     />
   );
 
-  return <Modal>{renderSuccesfulMessage ? passwordCreateSuccessElements : createPasswordElements}</Modal>;
+  return <Fragment>{renderSuccesfulMessage ? passwordCreateSuccessElements : createPasswordElements}</Fragment>;
 };
 
 export default CreatePassword;
