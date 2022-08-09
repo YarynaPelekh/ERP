@@ -7,12 +7,10 @@ import Card from "../UI/Card";
 import Input from "../UI/Input";
 import CaptchaPopUp from "./CaptchaPopUp";
 
-import { emailDomain } from "../config/constants";
+import { emailDomain, MAX_NUMBER_INCORRECT_ATTEMPTS, url } from "../config/constants";
 
-import classes from "./Login.module.css";
+import classes from "./AuthForm.module.css";
 import classesButton from "../UI/Button.module.css";
-
-const MAX_NUMBER_INCORRECT_ATTEMPTS = 3;
 
 const LogIn = () => {
   const navigate = useNavigate();
@@ -51,7 +49,7 @@ const LogIn = () => {
   const serverLogin = async () => {
     const loginValid = await axios
       // .get("http://localhost:2000/get", { passwordValue })
-      .get("http://localhost:2000/get", { params: { password: passwordValue } })
+      .get(url + "get", { params: { password: passwordValue } })
       .then((res) => {
         return res.data;
       })
@@ -70,11 +68,11 @@ const LogIn = () => {
     if (!validationOnServer) {
       let incorrectAttemptsNumber = +localStorage.getItem("incorrectAttemptsNumber") || 0;
       localStorage.setItem("incorrectAttemptsNumber", ++incorrectAttemptsNumber);
+      localStorage.setItem("userLogin", emailValue);
 
       setEmailIsValid(false);
       setPasswordIsValid(false);
     } else {
-      console.log("correct attempt");
       localStorage.setItem("incorrectAttemptsNumber", 0);
       setEmailIsValid(true);
       setPasswordIsValid(true);
@@ -82,7 +80,6 @@ const LogIn = () => {
       navigate("/main-page");
     }
     setIncorrectAttemptsNumber(+localStorage.getItem("incorrectAttemptsNumber") || 0);
-    console.log("Incorrect attempts number: ", incorrectAttemptsNumber);
   };
 
   useEffect(() => {
@@ -97,6 +94,7 @@ const LogIn = () => {
 
   useEffect(() => {
     setIncorrectAttemptsNumber(+localStorage.getItem("incorrectAttemptsNumber") || 0);
+    emailRef.current.value = localStorage.getItem("userLogin") || "";
   }, []);
 
   const modalOnCloseHandle = () => {
@@ -116,6 +114,7 @@ const LogIn = () => {
           label="Email"
           isValid={emailIsValid && passwordIsValid}
           onChange={emailChangeHandle}
+          passwordMode={false}
         />
         <Input
           ref={passwordRef}
@@ -123,8 +122,8 @@ const LogIn = () => {
           label="Password"
           isValid={emailIsValid && passwordIsValid}
           onChange={passwordChangeHandle}
+          passwordMode={true}
         />
-        {(!passwordIsValid || !emailIsValid) && <p className={classes.errorMessage}>Incorrect credentials</p>}
       </div>
       <div className={classes.buttonContainer}>
         <Button
@@ -141,6 +140,11 @@ const LogIn = () => {
           disabled={submitDisable}
         />
       </div>
+      {!passwordIsValid || !emailIsValid ? (
+        <p className={classes.errorMessage}>Incorrect credentials</p>
+      ) : (
+        <p className={classes.errorMessage}></p>
+      )}
       {showPopUp && <CaptchaPopUp onClose={modalOnCloseHandle} />}
     </Card>
   );
