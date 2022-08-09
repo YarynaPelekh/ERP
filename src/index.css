@@ -1,4 +1,5 @@
 :root {
+  /* //login */
   --login-background-color: #ebf0ff;
   --login-header-color: #474e77;
   --login-input-color: #3e3e3e;
@@ -9,6 +10,9 @@
   --error-card-main-message: #1c1b1f;
   --error-card-secondary-message: #49454f;
   --backdrop-color: #cecece;
+
+  /* //profile */
+  --profile-page-background: #f9f8ff;
 }
 
 * {

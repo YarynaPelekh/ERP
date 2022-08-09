@@ -6,6 +6,7 @@ import ForgotPassword from "./components/Login/ForgotPassword";
 import CreatePassword from "./components/Login/CreatePassword";
 
 import "./App.css";
+import ProfilePage from "./components/Profile/ProfilePage";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
       <Route path="/main-page" element={<MainPage />} />
       <Route path="/forgot-password" element={<ForgotPassword />} />
       <Route path="/create-password" element={<CreatePassword />} />
+      <Route path="/user-profile" element={<ProfilePage />} />
     </Routes>
   );
 }

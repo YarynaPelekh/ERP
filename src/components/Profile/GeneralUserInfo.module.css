@@ -1,0 +1,20 @@
+.mainContainer {
+  padding: 55px 75px;
+
+  background: #ffffff;
+  border-radius: 17px;
+  display: flex;
+  gap: 80px;
+}
+
+.avatar {
+  width: 191px;
+  height: 191px;
+  border-radius: 50%;
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
