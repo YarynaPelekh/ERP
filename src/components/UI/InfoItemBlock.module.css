@@ -1,0 +1,47 @@
+.label {
+  display: block;
+  font-family: Roboto;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.4px;
+  text-align: left;
+  color: var(--error-card-secondary-message);
+}
+
+.input {
+  display: inline;
+  flex: 2 1 auto;
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  color: var(--error-card-secondary-message);
+}
+
+.input:focus,
+.input:focus-visible {
+  outline: 1px solid var(--error-card-secondary-message);
+  border-radius: 3px;
+}
+
+.infoBtn {
+  display: inline;
+  width: 22px;
+  height: 24px;
+  border: none;
+}
+
+.editBtn {
+  background: url("../../asserts/icons/edit-pen.svg") no-repeat;
+  background-position: center;
+}
+
+.alignInputButton {
+  display: flex;
+  align-items: center;
+}

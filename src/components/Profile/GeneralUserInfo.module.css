@@ -15,6 +15,15 @@
 
 .infoContainer {
   display: flex;
+  flex-grow: 1;
+  margin-top: 20px;
+  gap: 20px;
+}
+
+.infoColumn {
+  display: flex;
   flex-direction: column;
   flex-wrap: wrap;
+  flex-grow: 1;
+  gap: 16px;
 }
