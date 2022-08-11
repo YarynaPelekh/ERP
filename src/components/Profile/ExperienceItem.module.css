@@ -1,0 +1,71 @@
+.card {
+  width: 85%;
+  margin-left: 16px;
+}
+
+.headerFirst {
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 23px;
+  letter-spacing: 0.5px;
+  text-align: left;
+  color: var(--profile-text-color);
+  margin-bottom: 12px;
+}
+
+.headerSecond {
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0.5px;
+  text-align: left;
+  margin-bottom: 24px;
+}
+
+.description {
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.technologyItem {
+  display: inline-block;
+  align-items: center;
+  padding: 6px 10px 6px 10px;
+  margin-right: 8px;
+  margin-bottom: 12px;
+
+  width: auto;
+  height: 32px;
+
+  background: var(--technology-background);
+  border-radius: 16px;
+}
+
+.btnContainer {
+  /* display: inline; */
+  float: right;
+  display: flex;
+  gap: 12px;
+}
+
+.experienceBtn {
+  display: inline;
+  width: 22px;
+  height: 24px;
+  border: none;
+}
+
+.editBtn {
+  background: url("../../asserts/icons/edit-pen.svg") no-repeat;
+  background-position: center;
+}
+.deleteBtn {
+  background: url("../../asserts/icons/trash-bin.svg") no-repeat;
+  background-position: center;
+}

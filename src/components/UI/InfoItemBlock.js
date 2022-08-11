@@ -41,7 +41,7 @@ const InfoItemBlock = (props) => {
           <button
             className={classes.infoBtn + " " + classes.editBtn}
             onClick={() => {
-              alert("EDIT ");
+              // alert("EDIT ");
               console.log(document.getElementsByName(props.value));
               // document.getElementsByName(props.value);
               inputRef.current.focus();

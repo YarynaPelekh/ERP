@@ -1,8 +1,10 @@
 .navBar {
   background-color: transparent;
-  /* background-color: whitesmoke; */
-  height: 130px;
-  padding-top: 40px;
+  width: 110%;
+  position: absolute;
+  left: -5%;
+  height: 87px;
+  padding-top: 20px;
   padding-bottom: 10px;
 }
 

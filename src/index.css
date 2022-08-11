@@ -13,6 +13,9 @@
 
   /* //profile */
   --profile-page-background: #f9f8ff;
+  --profile-text-color: #21212b;
+
+  --technology-background: #a79cdf;
 }
 
 * {
