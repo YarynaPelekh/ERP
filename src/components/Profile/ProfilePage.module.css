@@ -5,7 +5,7 @@
 }
 
 .pageContainer {
-  width: 890px;
+  width: 788px;
   /* width: 590px; */
 }
 
@@ -14,4 +14,8 @@
   position: absolute;
   left: 50%;
   transform: translate(-50%, 0);
+}
+
+.accordionCard {
+  margin-top: 53px;
 }

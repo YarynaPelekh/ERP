@@ -1,0 +1,38 @@
+.card {
+  width: 85%;
+  margin-left: 16px;
+}
+
+.headerFirst {
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 23px;
+  letter-spacing: 0.5px;
+  text-align: left;
+  color: var(--profile-text-color);
+  margin-bottom: 12px;
+}
+
+.btnContainer {
+  /* display: inline; */
+  float: right;
+  display: flex;
+  gap: 12px;
+}
+
+.experienceBtn {
+  display: inline;
+  width: 22px;
+  height: 24px;
+  border: none;
+}
+
+.editBtn {
+  background: url("../../asserts/icons/edit-pen.svg") no-repeat;
+  background-position: center;
+}
+.deleteBtn {
+  background: url("../../asserts/icons/trash-bin.svg") no-repeat;
+  background-position: center;
+}
