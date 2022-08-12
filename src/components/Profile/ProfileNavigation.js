@@ -1,5 +1,3 @@
-import Button from "../UI/Button";
-
 import classes from "./ProfileNavigation.module.css";
 
 const ProfileNavigation = () => {
@@ -26,7 +24,6 @@ const ProfileNavigation = () => {
           }}
         ></button>
       </div>
-      {/* </div> */}
     </nav>
   );
 };

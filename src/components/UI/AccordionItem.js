@@ -11,7 +11,7 @@ const AccordionItem = (props) => {
         <span className={classes.title}>{props.title}</span>
         <div className={classes.btnContainer}>
           <button
-            className={classes.accordionBtn + " " + classes.arrowDownBtn}
+            className={classes.accordionBtn + " " + classes.arrowDownBtn + " " + (isOpen && classes.rotate)}
             onClick={() => {
               setIsOpen((open) => !open);
             }}
