@@ -7,12 +7,10 @@
 }
 
 .accordionHeader {
-  /* height: 50px; */
   padding: 12px 16px;
 }
 
 .accordionHeaderIncreasedPadding {
-  /* height: auto; */
   padding: 20px 16px;
   margin-bottom: 24px;
 }
@@ -28,10 +26,9 @@
 }
 
 .btnContainer {
-  /* display: inline; */
   float: right;
   display: flex;
-  gap: 12px;
+  gap: 24px;
 }
 
 .accordionBtn {
@@ -48,6 +45,10 @@
 .arrowDownBtn {
   background: url("../../asserts/icons/arrow-down.svg") no-repeat;
   background-position: center;
+}
+
+.rotate {
+  transform: rotate(180deg);
 }
 
 .detailsCard {

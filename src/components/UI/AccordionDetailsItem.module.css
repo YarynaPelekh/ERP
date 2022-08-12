@@ -4,6 +4,7 @@
 }
 
 .headerFirst {
+  display: inline;
   font-family: Roboto;
   font-size: 20px;
   font-weight: 500;
@@ -11,17 +12,22 @@
   letter-spacing: 0.5px;
   text-align: left;
   color: var(--profile-text-color);
-  margin-bottom: 12px;
 }
 
-.headerSecond {
+.headerFirstUpdate {
+  font-weight: 400;
+}
+.displayBlock {
+  display: block;
+}
+
+.headerSecondary {
   font-family: Roboto;
   font-size: 16px;
   font-weight: 500;
   line-height: 19px;
   letter-spacing: 0.5px;
   text-align: left;
-  margin-bottom: 24px;
 }
 
 .description {
@@ -33,12 +39,11 @@
   text-align: left;
 }
 
-.technologyItem {
+.tagItem {
   display: inline-block;
   align-items: center;
   padding: 6px 10px 6px 10px;
   margin-right: 8px;
-  margin-bottom: 12px;
 
   width: auto;
   height: 32px;
@@ -48,10 +53,9 @@
 }
 
 .btnContainer {
-  /* display: inline; */
   float: right;
   display: flex;
-  gap: 12px;
+  gap: 24px;
 }
 
 .experienceBtn {
@@ -68,4 +72,20 @@
 .deleteBtn {
   background: url("../../asserts/icons/trash-bin.svg") no-repeat;
   background-position: center;
+}
+
+.margin12px {
+  margin-top: 12px;
+}
+
+.margin6px {
+  margin-top: 6px;
+}
+
+.margin24px {
+  margin-top: 24px;
+}
+
+.marginBottom24px {
+  margin-bottom: 24px;
 }
