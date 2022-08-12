@@ -52,7 +52,13 @@ const AccordionDetailsItem = (props) => {
           {props.item.description}
         </p>
       )}
-      {!!props.item.photos?.length && <p className={classes.photos + " " + classes.margin12px}>{props.item.photos}</p>}
+      {!!props.item.photos?.length && (
+        <div className={classes.photos + " " + classes.margin12px}>
+          {props.item.photos.map((photo) => {
+            return <img src={photo} alt="docs" className={classes.photo} />;
+          })}
+        </div>
+      )}
     </div>
   );
 };
