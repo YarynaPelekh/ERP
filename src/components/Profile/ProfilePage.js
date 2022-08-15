@@ -1,11 +1,18 @@
+import { useState } from "react";
+
 import AccordionItem from "../UI/AccordionItem";
 import GeneralUserInfo from "./GeneralUserInfo";
 import ProfileNavigation from "./ProfileNavigation";
 import AccordionDetailsItem from "../UI/AccordionDetailsItem";
+import AddExperience from "./AddExperience";
 // import ExperienceItem from "./ExperienceItem";
 // import SkillItem from "./SkillItem";
 
 import classes from "./ProfilePage.module.css";
+
+import sertificate_1 from "../../asserts/helper/sertificate_1.jpg";
+import sertificate_2 from "../../asserts/helper/sertificate_2.jpg";
+import sertificate_3 from "../../asserts/helper/sertificate_3.jpg";
 
 const experienceArr = [
   {
@@ -53,7 +60,7 @@ const educationArr = [
     location: "Lviv, Ukraine",
     dateFrom: "dec 2020",
     dateTo: "nov 2021",
-    photos: "",
+    photos: [sertificate_1, sertificate_2],
   },
   {
     university: "Another University",
@@ -80,7 +87,7 @@ const coursesArr = [
     link: "http://another-school.com",
     dateFrom: "dec 2020",
     dateTo: "nov 2021",
-    photos: "",
+    photos: [sertificate_3],
   },
 ];
 
@@ -136,7 +143,7 @@ const convertItemToUniversalFormat = (item, initialFormat) => {
         period: item.dateFrom + " - " + item.dateTo,
         tags: [],
         description: "",
-        photos: null,
+        photos: item.photos,
       };
       break;
     case "courses":
@@ -150,7 +157,7 @@ const convertItemToUniversalFormat = (item, initialFormat) => {
         period: item.dateFrom + " - " + item.dateTo,
         tags: [],
         description: "",
-        photos: null,
+        photos: item.photos,
       };
       break;
   }
@@ -160,6 +167,8 @@ const convertItemToUniversalFormat = (item, initialFormat) => {
 };
 
 const ProfilePage = () => {
+  const [showAddExperienceModal, setShowAddExperienceModal] = useState(false);
+
   return (
     <div className={classes.mainPage}>
       <div className={classes.pageContainer + " " + classes.centerHorizontally}>
@@ -167,7 +176,7 @@ const ProfilePage = () => {
         <GeneralUserInfo />
 
         <div className={classes.accordionCard}>
-          <AccordionItem title="My experience">
+          <AccordionItem title="My experience" onAdd={() => setShowAddExperienceModal(true)}>
             {experienceArr.map((item) => (
               <AccordionDetailsItem key={Math.random()} item={convertItemToUniversalFormat(item, "experience")} />
             ))}
@@ -194,6 +203,7 @@ const ProfilePage = () => {
           </AccordionItem>
         </div>
       </div>
+      {showAddExperienceModal && <AddExperience onClose={() => setShowAddExperienceModal(false)} />}
     </div>
   );
 };

@@ -20,6 +20,7 @@ const AccordionItem = (props) => {
             className={classes.accordionBtn + " " + classes.plusBtn}
             onClick={() => {
               console.log("add new");
+              props.onAdd();
             }}
           ></button>
         </div>
