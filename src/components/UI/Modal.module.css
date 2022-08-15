@@ -2,13 +2,13 @@
   position: fixed;
   top: 50%;
   left: 50%;
-  background-color: #eee;
+  background-color: transparent;
   border-radius: 14px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  /* box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25); */
   z-index: 30;
   animation: slide-down 300ms ease-out forwards;
   text-align: left;
-  padding: 20px;
+  /* padding: 20px; */
 }
 
 .backdrop {
@@ -19,6 +19,7 @@
   height: 100vh;
   z-index: 20;
   background-color: var(--backdrop-color);
+  opacity: 0.5;
 }
 
 .center {

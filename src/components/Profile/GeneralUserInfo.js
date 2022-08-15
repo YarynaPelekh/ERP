@@ -1,16 +1,36 @@
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 
 import InfoItemBlock from "../UI/InfoItemBlock";
 
 import classes from "./GeneralUserInfo.module.css";
 import avatar from "../../asserts/helper/avatar.jpg";
+import editPen from "../../asserts/icons/edit-pen-white.svg";
+import EditAvatar from "./EditAvatar";
 
 const GeneralUserInfo = () => {
+  const [showAvatarModal, setShowAvatarModal] = useState(false);
+  const [selectedImg, setSelectedImg] = useState(null);
+
+  const fileSelectHandler = (event) => {
+    setShowAvatarModal(true);
+    setSelectedImg(URL.createObjectURL(event.target.files[0]));
+  };
+
   return (
     <Fragment>
       <div className={classes.mainContainer + " " + classes.flexContainer}>
         <div className={classes.avatar}>
           <img src={avatar} alt="Avatar" className={classes.avatar} />
+          <button
+            className={classes.editButton}
+            onClick={() => {
+              document.getElementById("fileInput").click();
+            }}
+          >
+            <span className={classes.buttonLabel}>Edit</span>
+            <img src={editPen} className={classes.editPenIcon} />
+          </button>
+          <input id="fileInput" type="file" onChange={fileSelectHandler} hidden></input>
         </div>
         <div className={classes.infoContainer}>
           <div className={classes.infoColumn}>
@@ -24,7 +44,7 @@ const GeneralUserInfo = () => {
           </div>
         </div>
       </div>
-      {/* <div className={classes.bottomLine}></div> */}
+      {showAvatarModal && <EditAvatar img={selectedImg} onClose={() => setShowAvatarModal(false)} />}
     </Fragment>
   );
 };
