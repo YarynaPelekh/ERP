@@ -1,0 +1,21 @@
+.mainPage {
+  background-color: var(--profile-page-background);
+  width: 100%;
+  height: 100vh;
+}
+
+.pageContainer {
+  width: 788px;
+  /* width: 590px; */
+}
+
+.centerHorizontally {
+  margin: 0;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+}
+
+.accordionCard {
+  margin-top: 53px;
+}

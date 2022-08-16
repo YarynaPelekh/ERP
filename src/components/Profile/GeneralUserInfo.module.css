@@ -1,0 +1,73 @@
+.mainContainer {
+  display: block;
+  margin-top: 87px;
+  height: 226px;
+  padding: 42px 75px 0px 75px;
+
+  background: #ffffff;
+  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3), 0px 1px 3px 1px rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+}
+
+.flexContainer {
+  display: flex;
+  gap: 80px;
+}
+
+.avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  position: relative;
+  z-index: 1;
+}
+
+.infoContainer {
+  display: flex;
+  flex-grow: 1;
+  gap: 30px;
+}
+
+.infoColumn {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  gap: 16px;
+}
+
+.editButton {
+  opacity: 0.1;
+  position: absolute;
+  bottom: 0%;
+  right: 0;
+  background-color: var(--technology-background);
+  background-size: 32px;
+  z-index: 2;
+
+  width: 100%;
+  height: 50%;
+  border: none;
+  /* border-radius: 50%; */
+  border-radius: 50% / 100%;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.editButton:hover {
+  opacity: 0.8;
+}
+
+.buttonLabel {
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+  letter-spacing: 0.5px;
+  text-align: left;
+  color: var(--profile-page-background);
+}
+
+.editPenIcon {
+  margin-left: 10px;
+}

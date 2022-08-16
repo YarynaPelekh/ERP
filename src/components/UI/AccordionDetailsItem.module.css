@@ -1,0 +1,102 @@
+.card {
+  width: 85%;
+  margin-left: 16px;
+}
+
+.headerFirst {
+  display: inline;
+  font-family: Roboto;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 23px;
+  letter-spacing: 0.5px;
+  text-align: left;
+  color: var(--profile-text-color);
+}
+
+.headerFirstUpdate {
+  font-weight: 400;
+}
+.displayBlock {
+  display: block;
+}
+
+.headerSecondary {
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 19px;
+  letter-spacing: 0.5px;
+  text-align: left;
+}
+
+.description {
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+.tagItem {
+  display: inline-block;
+  align-items: center;
+  padding: 6px 10px 6px 10px;
+  margin-right: 8px;
+
+  width: auto;
+  height: 32px;
+
+  background: var(--technology-background);
+  border-radius: 16px;
+}
+
+.btnContainer {
+  float: right;
+  display: flex;
+  gap: 24px;
+}
+
+.experienceBtn {
+  display: inline;
+  width: 22px;
+  height: 24px;
+  border: none;
+}
+
+.editBtn {
+  background: url("../../asserts/icons/edit-pen.svg") no-repeat;
+  background-position: center;
+}
+.deleteBtn {
+  background: url("../../asserts/icons/trash-bin.svg") no-repeat;
+  background-position: center;
+}
+
+.margin12px {
+  margin-top: 12px;
+}
+
+.margin6px {
+  margin-top: 6px;
+}
+
+.margin24px {
+  margin-top: 24px;
+}
+
+.marginBottom24px {
+  margin-bottom: 24px;
+}
+
+.photos {
+  display: flex;
+  gap: 20px;
+}
+
+.photo {
+  /* width: 50px; */
+  height: 50px;
+  border-radius: 2%;
+}
