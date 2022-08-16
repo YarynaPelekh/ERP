@@ -21,6 +21,7 @@ const GeneralUserInfo = () => {
       <div className={classes.mainContainer + " " + classes.flexContainer}>
         <div className={classes.avatar}>
           <img src={avatar} alt="Avatar" className={classes.avatar} />
+
           <button
             className={classes.editButton}
             onClick={() => {
